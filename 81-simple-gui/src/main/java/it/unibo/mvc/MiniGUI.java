@@ -1,10 +1,13 @@
 package it.unibo.mvc;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Label;
+import java.awt.TextField;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,13 +36,33 @@ public class MiniGUI {
         canvas.add(write, BorderLayout.CENTER);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+/*new Jpannel */
+        final JPanel secondPannel = new JPanel();
+        secondPannel.setLayout(new BoxLayout(secondPannel,BoxLayout.LINE_AXIS));
+        secondPannel.add(write);
+        canvas.add(secondPannel,BorderLayout.CENTER);
+  //part2
+
+        final TextField textResult= new TextField();
+
+        final JPanel resultPannel = new JPanel();
+        resultPannel.setLayout(new BorderLayout());
+        final Label note = new Label("Result");
+        resultPannel.add(note , BorderLayout.WEST);
+        resultPannel.add(textResult , BorderLayout.CENTER);
+        canvas.add(resultPannel,BorderLayout.NORTH);
+
+
+
+
         /*
          * Handlers
          */
         write.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                System.out.println(randomGenerator.nextInt());
+                //System.out.println(randomGenerator.nextInt());
+                textResult.setText(String.valueOf(randomGenerator.nextInt()));
             }
         });
     }
